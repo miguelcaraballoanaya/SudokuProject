@@ -1,3 +1,6 @@
+import pygame
+pygame.init()
+
 class Board:
 
     def __init__(self, value, row, col, screen):
