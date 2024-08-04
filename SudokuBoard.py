@@ -26,12 +26,14 @@ class Board:
         self.update_board()
 
     def select(self, row, col):
-        pass
+        selected = (row, col)
+        return selected
 
     def click(self, row, col):
         if col <= self.width and row <= self.height:
-            column = (col // (self.width / 10))
-            row = (row // (self.height / 10))
+            column = int((col // (self.width / 10)))
+            row = int((row // (self.height / 10)))
+            self.select(row, column)
             return row, column
         return None
 
