@@ -10,6 +10,7 @@ class Board:
         self.height = height
         self.screen = screen
         self.difficulty = difficulty
+        # think I need to create the 81 cell objects here but not sure
 
     def draw(self):
         boardsize = self.width / 10
