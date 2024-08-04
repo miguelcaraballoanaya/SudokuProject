@@ -1,5 +1,5 @@
 import pygame
-
+from Cell import *
 pygame.init()
 
 
@@ -26,7 +26,8 @@ class Board:
         self.update_board()
 
     def select(self, row, col):
-        selected = (row, col)
+        # may need to change the exact calling of Cell here, depending on how everything ties together
+        selected = Cell(value, row, col, self.screen)
         return selected
 
     def click(self, row, col):
