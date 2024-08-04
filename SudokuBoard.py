@@ -29,7 +29,11 @@ class Board:
         pass
 
     def click(self, row, col):
-        pass
+        if col <= self.width and row <= self.height:
+            column = (col // (self.width / 10))
+            row = (row // (self.height / 10))
+            return row, column
+        return None
 
     def clear(self):
         pass
