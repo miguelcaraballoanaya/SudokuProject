@@ -1,16 +1,29 @@
 import pygame
+
 pygame.init()
+
 
 class Board:
 
-    def __init__(self, value, row, col, screen):
-        self.value = value
-        self.row = row
-        self.col = col
+    def __init__(self, width, height, screen, difficulty):
+        self.width = width
+        self.height = height
         self.screen = screen
+        self.difficulty = difficulty
 
     def draw(self):
-        pass
+        boardsize = self.width / 10
+        for i in range(0, 10):
+            if i % 3 == 0:
+                pygame.draw.line(self.screen, (0, 0, 0), (boardsize + boardsize * i, boardsize),
+                                 (boardsize + boardsize * i, 10*boardsize), 5)
+                pygame.draw.line(self.screen, (0, 0, 0), (boardsize, boardsize + boardsize * i),
+                                 (10*boardsize, boardsize + boardsize * i), 5)
+            pygame.draw.line(self.screen, (0, 0, 0), (boardsize + boardsize * i, boardsize),
+                             (boardsize + boardsize * i, 10*boardsize), 2)
+            pygame.draw.line(self.screen, (0, 0, 0), (boardsize, boardsize + boardsize * i),
+                             (10*boardsize, boardsize + boardsize * i), 2)
+        self.update_board()
 
     def select(self, row, col):
         pass
@@ -34,7 +47,7 @@ class Board:
         pass
 
     def update_board(self):
-        pass
+        pygame.display.update()
 
     def find_empty(self):
         pass
