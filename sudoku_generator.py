@@ -69,7 +69,7 @@ class SudokuGenerator:
 
 # I think we should have two boards, one that holds the solution and one that holds the puzzle
 # to compare the completed puzzle to the solution, unless you have a different idea of comparing
-# to check for a win - Jeremiah
+# to check for a win -- Jeremiah
 def generate_sudoku(size, removed):
     sudoku = SudokuGenerator(size, removed)
     sudoku.fill_values()
