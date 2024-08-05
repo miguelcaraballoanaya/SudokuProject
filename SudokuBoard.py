@@ -11,6 +11,7 @@ class Board:
         self.screen = screen
         self.difficulty = difficulty
         self.cells = self.cell_grid(9, 9, screen)
+        self.currently_selected = None
 
     def cell_grid(self, rows, col, screen):
         grid = []
@@ -36,8 +37,11 @@ class Board:
         self.update_board()
 
     def select(self, row, col):
-        # may need to change if this returns anything depending on how it's implemented
+        # may need to change if this returns anything depending on how it's implemented - Jeremiah
+        if self.currently_selected != None:
+            self.currently_selected.selected = False
         self.cells[row][col].selected = True
+        self.current_selected = self.cells[row][col]
         selected = self.cells[row][col].selected
         return selected
 
@@ -50,7 +54,7 @@ class Board:
         return None
 
     def clear(self):
-        # we are going to need a way to tell if these cells are filled by the user or program in the cell class
+        # we are going to need a way to tell if these cells are filled by the user or program in the cell class - Jeremiah
         if cell.changeable == True:
             cell.value = None
 
@@ -74,6 +78,7 @@ class Board:
         return True
 
     def update_board(self):
+        # I don't think this is right, but we can look at it as more is written - Jeremiah
         pygame.display.update()
 
     def find_empty(self):
