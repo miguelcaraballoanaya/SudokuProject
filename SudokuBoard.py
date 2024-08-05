@@ -1,7 +1,25 @@
 import pygame
-from Cell import *
 pygame.init()
 
+class Cell:
+
+    def __init__(self, value, row, col, screen):
+        self.value = value
+        self.row = row
+        self.col = col
+        self.screen = screen
+        self.selected = False
+        self.changeable = True
+        self.sketched_value = None
+
+    def set_cell_value(self, value):
+        self.value = value
+
+    def set_sketched_value(self, value):
+        self.sketched_value = value
+
+    def draw(self):
+        pass
 
 class Board:
 
@@ -41,7 +59,7 @@ class Board:
         if self.currently_selected != None:
             self.currently_selected.selected = False
         self.cells[row][col].selected = True
-        self.current_selected = self.cells[row][col]
+        self.currently_selected = self.cells[row][col]
         selected = self.cells[row][col].selected
         return selected
 
@@ -55,14 +73,18 @@ class Board:
 
     def clear(self):
         # we are going to need a way to tell if these cells are filled by the user or program in the cell class - Jeremiah
-        if cell.changeable == True:
-            cell.value = None
+       if self.currently_selected.changeable == True:
+          self.currently_selected.value = None
 
     def sketch(self, value):
         pass
 
     def place_number(self, value):
-        cell.set_sell_value(value)
+        # need to see more of the program to see if this will work - Jeremiah
+        for row in self.cells:
+            for cell in row:
+                if cell.selected == True:
+                    cell.set_cell_value(value)
 
     def reset_to_original(self):
         for row in self.cells:
