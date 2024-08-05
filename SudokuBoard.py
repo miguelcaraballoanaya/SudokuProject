@@ -49,7 +49,9 @@ class Board:
         return None
 
     def clear(self):
-        pass
+        # we are going to need a way to tell if these cells are filled by the user or program in the cell class
+        if cell.changeable == True:
+            cell.value = None
 
     def sketch(self, value):
         pass
@@ -58,10 +60,17 @@ class Board:
         pass
 
     def reset_to_original(self):
-        pass
+        for row in self.cells:
+            for cell in row:
+                if cell.changeable == True:
+                    cell.value = None
 
     def is_full(self):
-        pass
+        for row in self.cells:
+            for cell in row:
+                if cell.value is None:
+                    return False
+        return True
 
     def update_board(self):
         pygame.display.update()
