@@ -10,7 +10,16 @@ class Board:
         self.height = height
         self.screen = screen
         self.difficulty = difficulty
-        # think I need to create the 81 cell objects here but not sure
+        self.cells = self.cell_grid(9, 9, screen)
+
+    def cell_grid(self, rows, col, screen):
+        grid = []
+        for r in range(rows):
+            row = []
+            for c in range(col):
+                row.append(Cell(None, r, c, screen))
+            grid.append(row)
+        return grid
 
     def draw(self):
         boardsize = self.width / 10
