@@ -36,8 +36,9 @@ class Board:
         self.update_board()
 
     def select(self, row, col):
-        # may need to change the exact calling of Cell here, depending on how everything ties together
-        selected = Cell(value, row, col, self.screen)
+        # may need to change if this returns anything depending on how it's implemented
+        self.cells[row][col].selected = True
+        selected = self.cells[row][col].selected
         return selected
 
     def click(self, row, col):
@@ -57,7 +58,7 @@ class Board:
         pass
 
     def place_number(self, value):
-        pass
+        cell.set_sell_value(value)
 
     def reset_to_original(self):
         for row in self.cells:
@@ -76,7 +77,11 @@ class Board:
         pygame.display.update()
 
     def find_empty(self):
-        pass
+        for row in self.cells:
+            for cell in row:
+                if cell.value is None:
+                    cell_location = (cell.row, cell.col)
+                    return cell_location
 
     def check_board(self):
         pass
