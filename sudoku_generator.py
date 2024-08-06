@@ -1,3 +1,6 @@
+import random
+import pygame
+
 class SudokuGenerator:
     def __init__(self, row_length, removed_cells):
         self.row_length = row_length
@@ -32,13 +35,36 @@ class SudokuGenerator:
         return True
 
     def is_valid(self, row, col, num):
-        pass
+        for i in range(9):
+            if self.board[row][i] == num:
+                return False
+
+        for j in range(9):
+            if self.board[j][col] == num:
+                return False
+
+        box_row = (row // 3) * 3
+        box_col = (col // 3) * 3
+        for i in range(box_row, box_row + 3):
+            for j in range(box_col, box_col + 3):
+                if self.board[i][j] == num:
+                    return False
+
+        return True
 
     def fill_box(self, row_start, col_start):
-        pass
+        nums = list(range(1,10))
+        random.shuffle(nums)
+        index = 0
+        for i in range(row_start, row_start + 3):
+            for j in range(col_start, col_start + 3):
+                if self.valid_in_box(row_start, col_start, nums[index]):
+                    self.board[i][j] = nums[index]
+                    index += 1
 
     def fill_diagonal(self):
-        pass
+        for i in range(0,9,3):
+            self.fill_box(i,i)
 
     def fill_remaining(self, row, col):
         if (col >= self.row_length and row < self.row_length - 1):
@@ -64,12 +90,16 @@ class SudokuGenerator:
         self.fill_remaining(0, self.box_length)
 
     def remove_cells(self):
-        pass
+        num = self.removed_cells
+        rem_list = []
+        while len(rem_list) < num:
+            row = random.randint(0, self.row_length - 1)
+            col = random.randint(0, self.row_length - 1)
 
+            if (row, col) not in rem_list and self.board[row][col] != 0:
+                self.board[row][col] = 0
+                rem_list.append((row, col))
 
-# I think we should have two boards, one that holds the solution and one that holds the puzzle
-# to compare the completed puzzle to the solution, unless you have a different idea of comparing
-# to check for a win -- Jeremiah
 def generate_sudoku(size, removed):
     sudoku = SudokuGenerator(size, removed)
     sudoku.fill_values()
@@ -77,3 +107,39 @@ def generate_sudoku(size, removed):
     sudoku.remove_cells()
     board = sudoku.get_board()
     return board
+
+
+
+class Cell:
+    def __init__(self, value, row, col, screen):
+        self.value = value
+        self.row = row
+        self.col = col
+        self.screen = screen
+        self.width = screen.get_width() // 9
+        self.height = screen.get_height() // 9
+        self.selected = False
+
+    def set_cell_value(self, value):
+        self.value = value
+
+    def set_sketched_value(self, value):
+        self.sketched_value = value
+
+    def draw(self):
+        font = pygame.font.Font(None, 30)
+        x = self.col * self.width
+        y = self.row * self.height
+
+        if self.selected:
+            pygame.draw.rect(self.screen, (255, 0, 0), (x, y, self.width, self.height), 2) #red color
+        else:
+            pygame.draw.rect(self.screen, (0, 0, 0), (x, y, self.width, self.height), 1) #black color
+
+        if self.value != 0:
+            text = font.render(str(self.value), True, (0, 0, 0))
+            self.screen.blit(text, (x + self.width // 2 - text.get_width() // 2, y + self.height // 2 - text.get_height // 2))
+        elif self.sketched_value != 0:
+            sketched_font = pygame.font.Font(None, 20)
+            sketched_text = sketched_font.render(str(self.sketched_value), True, (128, 128, 128)) #grey color
+            self.screen.blit(sketched_text, (x + 5, y + 5))
