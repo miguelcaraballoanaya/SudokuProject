@@ -89,6 +89,7 @@ class SudokuGenerator:
         self.fill_diagonal()
         self.fill_remaining(0, self.box_length)
 
+# we need to label a cell as either changeable or not user-changeable, thinking this section would be the best place
     def remove_cells(self):
         num = self.removed_cells
         rem_list = []
@@ -100,6 +101,7 @@ class SudokuGenerator:
                 self.board[row][col] = 0
                 rem_list.append((row, col))
 
+# I think we need two copies of the board, the original and the puzzle, so we can compare for the win condition
 def generate_sudoku(size, removed):
     sudoku = SudokuGenerator(size, removed)
     sudoku.fill_values()
@@ -119,6 +121,8 @@ class Cell:
         self.width = screen.get_width() // 9
         self.height = screen.get_height() // 9
         self.selected = False
+        self.changeable = True
+        self.sketched_value = None
 
     def set_cell_value(self, value):
         self.value = value
