@@ -114,8 +114,11 @@ def main():
                         screen.blit(difficulty_surface, difficulty_rect)
 
                         removed = 40
-                        #sudoku_solution = sudoku_generator.generate_sudoku(9, removed)
-                        #print(sudoku_solution)  #this is a temporary check
+                        sudoku_board = sudoku_generator.generate_sudoku(9, removed)
+                        sudoku_solution = sudoku_generator.generate_sudoku_solution(9, removed)
+
+                        print(sudoku_board)  #this is a temporary check
+                        print(sudoku_solution)  #this is a temporary check
 
                         game_option_buttons()
 

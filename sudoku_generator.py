@@ -52,19 +52,31 @@ class SudokuGenerator:
 
         return True
 
+    # def fill_box(self, row_start, col_start):
+    #     nums = list(range(1,10))
+    #     random.shuffle(nums)
+    #     index = 0
+    #     for i in range(row_start, row_start + 3):
+    #         for j in range(col_start, col_start + 3):
+    #             if self.valid_in_box(row_start, col_start, nums[index]):
+    #                 self.board[i][j] = nums[index]
+    #                 index += 1
     def fill_box(self, row_start, col_start):
-        nums = list(range(1,10))
-        random.shuffle(nums)
-        index = 0
-        for i in range(row_start, row_start + 3):
-            for j in range(col_start, col_start + 3):
-                if self.valid_in_box(row_start, col_start, nums[index]):
-                    self.board[i][j] = nums[index]
-                    index += 1
+        integer_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        for x in range(col_start, col_start + 3):
+            for y in range(row_start, row_start + 3):
+                choice = random.choice(integer_list)
+                self.board[y][x] = choice
+                integer_list.remove(choice)
+        print(self.board)
 
+    # def fill_diagonal(self):
+    #     for i in range(0,9,3):
+    #         self.fill_box(i,i)
     def fill_diagonal(self):
-        for i in range(0,9,3):
-            self.fill_box(i,i)
+        self.fill_box(0,0)
+        self.fill_box(3, 3)
+        self.fill_box(6, 6)
 
     def fill_remaining(self, row, col):
         if (col >= self.row_length and row < self.row_length - 1):
@@ -84,6 +96,14 @@ class SudokuGenerator:
                 col = 0
                 if row >= self.row_length:
                     return True
+
+        for num in range(1, self.row_length + 1):
+            if self.is_valid(row, col, num):
+                self.board[row][col] = num
+                if self.fill_remaining(row, col + 1):
+                    return True
+                self.board[row][col] = 0
+        return False
 
     def fill_values(self):
         self.fill_diagonal()
@@ -110,6 +130,11 @@ def generate_sudoku(size, removed):
     board = sudoku.get_board()
     return board
 
+def generate_sudoku_solution(size, removed):
+    sudoku = SudokuGenerator(size, removed)
+    sudoku.fill_values()
+    board = sudoku.get_board()
+    return board
 
 
 class Cell:
