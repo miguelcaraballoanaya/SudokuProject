@@ -170,5 +170,5 @@ class Cell:
             self.screen.blit(text, (x + self.width // 2 - text.get_width() // 2, y + self.height // 2 - text.get_height() // 2))
         elif self.sketched_value != 0:
             sketched_font = pygame.font.Font(None, 20)
-            sketched_text = sketched_font.render(str(self.sketched_value), True, (128, 128, 128)) #grey color
+            sketched_text = sketched_font.render("", True, (128, 128, 128)) #grey color
             self.screen.blit(sketched_text, (x + 5, y + 5))

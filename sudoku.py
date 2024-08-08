@@ -117,6 +117,15 @@ def main():
                         sudoku_board = sudoku_generator.generate_sudoku(9, removed)
                         sudoku_solution = sudoku_generator.generate_sudoku_solution(9, removed)
 
+                        row_index = 1
+                        for i in sudoku_board:
+                            col_index = 1
+                            for j in i:
+                                cell = sudoku_generator.Cell(j, row_index, col_index, screen)
+                                cell.draw()
+                                col_index += 1
+                            row_index += 1
+
                         print(sudoku_board)  #this is a temporary check
                         print(sudoku_solution)  #this is a temporary check
 
@@ -165,8 +174,13 @@ def main():
                         print("CLICK IS NOT NONE")  #this is a temporary check to make sure click detection works
                         col, row = click
                         board.select(row, col)
-                        selected_cell = sudoku_generator.Cell(5, row, col, screen)  #5 is a placeholder value
-                        selected_cell.draw()  #this is not functioning properly
+                        if cell.value != 0:
+                            pass
+                        elif cell.sketched_value is None:
+                            selected_cell = sudoku_generator.Cell(5, row, col, screen)  #5 is a placeholder value
+                            selected_cell.draw()
+                        else:
+                            pass
 
 
 
