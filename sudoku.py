@@ -353,7 +353,26 @@ def main():
                     row, col
                 except NameError:
                     row, col = 1, 1
+
                 board.select(row, col)
+
+                row_index = row - 1
+                col_index = col - 1
+
+                screen.fill(bg_color)
+                board.draw()
+                screen.blit(difficulty_surface, difficulty_rect)
+                game_option_buttons()
+
+                for i in cells_list:
+                    i.draw()
+
+                pygame.draw.rect(screen, (255, 0, 0), ((72 + (72 * (col - 1))), (72 + (72 * (row - 1))), 72, 72), 2)
+                pygame.display.update()
+
+                cell = cells_list[(row - 1) * 9 + (col - 1)]
+
+
                 if event.key == pygame.K_LEFT:
                     if col == 1:
                         pass
