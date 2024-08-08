@@ -85,7 +85,7 @@ def main():
 
                 if main_screen == True:
 
-                    if 100 <= x <= 230 and 450 <= y <= 515:
+                    if 135 <= x <= 265 and 470 <= y <= 535:
                         board = SudokuBoard.Board(720, 720, screen, "EASY")
                         screen.fill(bg_color)
                         board.draw()
@@ -116,7 +116,7 @@ def main():
 
                         main_screen = False
 
-                    elif 295 <= x <= 425 and 450 <= y <= 515:
+                    elif 335 <= x <= 465 and 470 <= y <= 535:
                         board = SudokuBoard.Board(720, 720, screen, "MEDIUM")
                         screen.fill(bg_color)
                         board.draw()
@@ -146,7 +146,7 @@ def main():
 
                         main_screen = False
 
-                    elif 490 <= x <= 620 and 450 <= y <= 515:
+                    elif 535 <= x <= 665 and 470 <= y <= 535:
                         board = SudokuBoard.Board(720, 720, screen, "HARD")
                         screen.fill(bg_color)
                         board.draw()
