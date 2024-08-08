@@ -78,13 +78,6 @@ def main():
     while True:
         for event in pygame.event.get():
 
-            if not any(0 in sublist for sublist in sudoku_board):
-                if sudoku_board == sudoku_solution:
-                    game_end = True
-                    win = True
-                else:
-                    game_end = True
-
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
@@ -200,6 +193,12 @@ def main():
                     break  #added this because the execution was getting stuck in this conditional
 
                 elif main_screen == False:
+                    if not any(0 in sublist for sublist in sudoku_board):
+                        if sudoku_board == sudoku_solution:
+                            game_end = True
+                            win = True
+                        else:
+                            game_end = True
                     click = board.click(x, y)
 
                     if 135 <= x <= 265 and 730 <= y <= 795:
@@ -226,7 +225,14 @@ def main():
                         row_index = row - 1
                         col_index = col - 1
 
-                        select_rect = pygame.draw.rect(screen, (255, 0, 0), ((72+(72*(col-1))), (72+(72*(row-1))), 72, 72), 2)
+                        screen.fill(bg_color)
+                        board.draw()
+                        screen.blit(difficulty_surface, difficulty_rect)
+
+                        for i in cells_list:
+                            i.draw()
+
+                        pygame.draw.rect(screen, (255, 0, 0), ((72+(72*(col-1))), (72+(72*(row-1))), 72, 72), 2)
                         pygame.display.update()
 
                         cell = cells_list[(row-1)*9 + (col-1)]
@@ -325,6 +331,7 @@ def main():
 
 
         pygame.display.update()
+
 
 if __name__ == "__main__":
     main()
