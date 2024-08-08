@@ -135,11 +135,15 @@ def main():
                         sudoku_solution = sudoku_generator.generate_sudoku_solution(9, removed)
 
                         row_index = 1
+                        cells_list = []
                         for i in sudoku_board:
                             col_index = 1
                             for j in i:
                                 cell = sudoku_generator.Cell(j, row_index, col_index, screen)
                                 cell.draw()
+                                if cell.value != 0:
+                                    cell.changeable = False
+                                cells_list.append(cell)
                                 col_index += 1
                             row_index += 1
 
@@ -166,11 +170,15 @@ def main():
                         sudoku_solution = sudoku_generator.generate_sudoku_solution(9, removed)
 
                         row_index = 1
+                        cells_list = []
                         for i in sudoku_board:
                             col_index = 1
                             for j in i:
                                 cell = sudoku_generator.Cell(j, row_index, col_index, screen)
                                 cell.draw()
+                                if cell.value != 0:
+                                    cell.changeable = False
+                                cells_list.append(cell)
                                 col_index += 1
                             row_index += 1
 
@@ -270,6 +278,7 @@ def main():
                                                 cell.draw()
                                             sudoku_board[row_index][col_index] = cell.value
                                             print("Enter")
+                                            print(sudoku_board)
                                             enter = True
                                             break
 
