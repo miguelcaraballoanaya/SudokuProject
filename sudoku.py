@@ -210,10 +210,49 @@ def main():
                         print(row_index, "", col_index)
                         print(cell_value)
 
-
-
                         if cell_value == 0:
-                            pass
+                            while True:
+                                for event in pygame.event.get():
+                                    if event.type == pygame.KEYDOWN:
+                                        if event.key == pygame.K_1:
+                                            cell_value = 1
+                                            print(1)
+                                        elif event.key == pygame.K_2:
+                                            cell_value = 2
+                                            print(2)
+                                        elif event.key == pygame.K_3:
+                                            cell_value = 3
+                                            print(3)
+                                        elif event.key == pygame.K_4:
+                                            cell_value = 4
+                                            print(4)
+                                        elif event.key == pygame.K_5:
+                                            cell_value = 5
+                                            print(5)
+                                        elif event.key == pygame.K_6:
+                                            cell_value = 6
+                                            print(6)
+                                        elif event.key == pygame.K_7:
+                                            cell_value = 7
+                                            print(7)
+                                        elif event.key == pygame.K_8:
+                                            cell_value = 8
+                                            print(8)
+                                        elif event.key == pygame.K_9:
+                                            cell_value = 9
+                                            print(9)
+                                        if event.key == pygame.K_RETURN:
+                                            cell = sudoku_generator.Cell(cell_value, row, col, screen)
+                                            cell.draw()
+                                            break
+                                    else:
+                                        continue
+                            break
+
+                        elif cell_value != 0:
+                            cell = sudoku_generator.Cell(cell_value, row, col, screen)
+
+                            print("B")
 
 
 
