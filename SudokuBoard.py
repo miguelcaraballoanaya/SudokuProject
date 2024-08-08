@@ -57,9 +57,12 @@ class Board:
         self.update_board()
 
     def select(self, row, col):
-        # may need to change if this returns anything depending on how it's implemented - Jeremiah
+
         if self.currently_selected != None:
             self.currently_selected.selected = False
+
+
+
         self.cells[row][col].selected = True
         self.currently_selected = self.cells[row][col]
         selected = self.cells[row][col].selected

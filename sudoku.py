@@ -211,10 +211,14 @@ def main():
 
                     elif click is not None:  #this is true if the user clicks a cell
                         print("CLICK IS NOT NONE")  #this is a temporary check to make sure click detection works
+                        x, y = event.pos
                         col, row = click
                         board.select(row, col)
                         row_index = row - 1
                         col_index = col - 1
+
+                        select_rect = pygame.draw.rect(screen, (255, 0, 0), ((72+(72*(col-1))), (72+(72*(row-1))), 72, 72), 2)
+                        pygame.display.update()
 
                         cell = cells_list[(row-1)*9 + (col-1)]
 
@@ -295,6 +299,10 @@ def main():
                         elif cell.value != 0:
                             print("B")
                             pass
+
+
+
+
 
 
 
