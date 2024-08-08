@@ -143,8 +143,8 @@ class Cell:
         self.row = row
         self.col = col
         self.screen = screen
-        self.width = screen.get_width() // 9
-        self.height = screen.get_height() // 9
+        self.width = 72  #changed these because the board does not take up the whole screen
+        self.height = 72
         self.selected = False
         self.changeable = True
         self.sketched_value = None
