@@ -66,7 +66,8 @@ class Board:
         return selected
 
     def click(self, row, col):
-        if col <= self.width and row <= self.height:
+        if ((800 - self.width) <= col <= (800 - (800 - self.width)) and (800 - self.height) <= row <=
+                (800 - (800 - self.height))):
             column = int((col // (self.width / 10)))
             row = int((row // (self.height / 10)))
             self.select(row, column)
