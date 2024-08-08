@@ -96,8 +96,21 @@ def main():
                         screen.blit(difficulty_surface, difficulty_rect)
 
                         removed = 30
-                        #sudoku_generator.generate_sudoku(9, removed)
-                        #calling this function in any of the 3 difficulties freezes the program for some reason.
+
+                        sudoku_board = sudoku_generator.generate_sudoku(9, removed)
+                        sudoku_solution = sudoku_generator.generate_sudoku_solution(9, removed)
+
+                        row_index = 1
+                        for i in sudoku_board:
+                            col_index = 1
+                            for j in i:
+                                cell = sudoku_generator.Cell(j, row_index, col_index, screen)
+                                cell.draw()
+                                col_index += 1
+                            row_index += 1
+
+                        print(sudoku_board)  #this is a temporary check
+                        print(sudoku_solution)  #this is a temporary check
 
                         game_option_buttons()
 
@@ -144,7 +157,21 @@ def main():
                         screen.blit(difficulty_surface, difficulty_rect)
 
                         removed = 50
-                        #sudoku_generator.generate_sudoku(9, removed)
+
+                        sudoku_board = sudoku_generator.generate_sudoku(9, removed)
+                        sudoku_solution = sudoku_generator.generate_sudoku_solution(9, removed)
+
+                        row_index = 1
+                        for i in sudoku_board:
+                            col_index = 1
+                            for j in i:
+                                cell = sudoku_generator.Cell(j, row_index, col_index, screen)
+                                cell.draw()
+                                col_index += 1
+                            row_index += 1
+
+                        print(sudoku_board)  # this is a temporary check
+                        print(sudoku_solution)  # this is a temporary check
 
                         game_option_buttons()
 
@@ -182,6 +209,8 @@ def main():
                         print(click)
                         print(row_index, "", col_index)
                         print(cell_value)
+
+
 
                         if cell_value == 0:
                             pass
