@@ -245,13 +245,19 @@ def main():
                                         if event.key == pygame.K_RETURN:
                                             cell = sudoku_generator.Cell(cell_value, row, col, screen)
                                             cell.draw()
+                                            sudoku_board[row_index][col_index] = cell_value
                                             print("Enter")
                                             enter = True
                                             break
+                                    if event.type == pygame.MOUSEBUTTONDOWN:
+                                        x, y = event.pos
+                                        new_click = board.click(x, y)
+                                        if click != new_click:
+                                            enter = True
+                                        else:
+                                            continue
                                 if enter:
                                     break
-
-
 
                         elif cell_value != 0:
                             cell = sudoku_generator.Cell(cell_value, row, col, screen)
