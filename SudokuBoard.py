@@ -35,9 +35,9 @@ class Board:
 
     def cell_grid(self, rows, col, screen):
         grid = []
-        for r in range(rows):
+        for r in range(rows+1):
             row = []
-            for c in range(col):
+            for c in range(col+1):
                 row.append(Cell(None, r, c, screen))
             grid.append(row)
         return grid
