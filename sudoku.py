@@ -97,6 +97,7 @@ def main():
 
                         removed = 30
                         #sudoku_generator.generate_sudoku(9, removed)
+                        #calling this function in any of the 3 difficulties freezes the program for some reason.
 
                         game_option_buttons()
 
@@ -142,7 +143,7 @@ def main():
                     click = board.click(x, y)
 
                     if 135 <= x <= 265 and 730 <= y <= 795:
-                        print("BUTTON 1 WORKS")
+                        print("BUTTON 1 WORKS")  #this is a temporary check to make sure click detection works
                         pass
 
                     elif 335 <= x <= 465 and 730 <= y <= 795:
@@ -154,15 +155,15 @@ def main():
                         pygame.quit()
                         sys.exit()
 
-                    elif click is None:
-                        print("CLICK IS NONE")
+                    elif click is None:  #this is true if the user clicks outside the board space
+                        print("CLICK IS NONE")  #this is a temporary check to make sure click detection works
 
-                    elif click is not None:
-                        print("CLICK IS NOT NONE")
-                        row, col = click
+                    elif click is not None:  #this is true if the user clicks a cell
+                        print("CLICK IS NOT NONE")  #this is a temporary check to make sure click detection works
+                        col, row = click
                         board.select(row, col)
-                        selected_cell = sudoku_generator.Cell(5, row, col, screen)
-                        selected_cell.draw()
+                        selected_cell = sudoku_generator.Cell(5, row, col, screen)  #5 is a placeholder value
+                        selected_cell.draw()  #this is not functioning properly
 
 
 
