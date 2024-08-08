@@ -230,27 +230,40 @@ def main():
                                             enter = True
                                             break
                                         elif event.key == pygame.K_3:
-                                            cell_value = 3
-                                            print(3)
+                                            cell.sketched_value = 3
+                                            cell.draw()
+                                            enter = True
+                                            break
                                         elif event.key == pygame.K_4:
-                                            cell_value = 4
-                                            print(4)
+                                            cell.sketched_value = 4
+                                            cell.draw()
+                                            enter = True
+                                            break
                                         elif event.key == pygame.K_5:
-                                            cell_value = 5
-                                            print(5)
+                                            cell.sketched_value = 5
+                                            cell.draw()
+                                            enter = True
+                                            break
                                         elif event.key == pygame.K_6:
-                                            cell_value = 6
-                                            print(6)
+                                            cell.sketched_value = 6
+                                            cell.draw()
+                                            enter = True
+                                            break
                                         elif event.key == pygame.K_7:
-                                            cell_value = 7
-                                            print(7)
+                                            cell.sketched_value = 7
+                                            cell.draw()
+                                            enter = True
+                                            break
                                         elif event.key == pygame.K_8:
-                                            cell_value = 8
-                                            print(8)
+                                            cell.sketched_value = 8
+                                            cell.draw()
+                                            enter = True
+                                            break
                                         elif event.key == pygame.K_9:
-                                            cell_value = 9
-                                            print(9)
-                                        #cell_value = cell.sketched_value
+                                            cell.sketched_value = 9
+                                            cell.draw()
+                                            enter = True
+                                            break
                                         if event.key == pygame.K_RETURN:
                                             cell.value = cell.sketched_value
                                             if cell.value is not None:
