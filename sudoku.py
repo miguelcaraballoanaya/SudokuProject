@@ -126,22 +126,21 @@ def main():
                         game_option_buttons()
 
                         main_screen = False
-                    break
+                    break  #added this because the execution was getting stuck in this conditional
 
                 elif main_screen == False:
-
-                    print("WE ARE HERE")
 
                     if 135 <= x <= 265 and 730 <= y <= 795:
                         print("BUTTON 1 WORKS")
                         pass
 
                     elif 335 <= x <= 465 and 730 <= y <= 795:
-                        pygame.quit()
-                        sys.exit()
+                        print("BUTTON 2 WORKS")
+                        pass
 
                     elif 535 <= x <= 665 and 730 <= y <= 795:
-                        print("BUTTON 3 WORKS")
+                        pygame.quit()
+                        sys.exit()
                         pass
 
 
