@@ -146,8 +146,9 @@ def main():
                         pass
 
                     elif 335 <= x <= 465 and 730 <= y <= 795:
-                        print("BUTTON 2 WORKS")
-                        pass
+                        screen.fill(bg_color)
+                        main()
+                        break
 
                     elif 535 <= x <= 665 and 730 <= y <= 795:
                         pygame.quit()
