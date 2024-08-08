@@ -60,9 +60,6 @@ class Board:
 
         if self.currently_selected != None:
             self.currently_selected.selected = False
-
-
-
         self.cells[row][col].selected = True
         self.currently_selected = self.cells[row][col]
         selected = self.cells[row][col].selected
@@ -78,7 +75,7 @@ class Board:
         return None
 
     def clear(self):
-        # we are going to need a way to tell if these cells are filled by the user or program in the cell class - Jeremiah
+    # we are going to need a way to tell if these cells are filled by the user or program in the cell class - Jeremiah
        if self.currently_selected.changeable == True:
           self.currently_selected.value = None
 
