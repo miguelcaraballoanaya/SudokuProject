@@ -95,6 +95,9 @@ def main():
                         difficulty_rect = difficulty_surface.get_rect(center=(400, 30))
                         screen.blit(difficulty_surface, difficulty_rect)
 
+                        removed = 30
+                        #sudoku_generator.generate_sudoku(9, removed)
+
                         game_option_buttons()
 
                         main_screen = False
@@ -109,6 +112,10 @@ def main():
                         difficulty_rect = difficulty_surface.get_rect(center=(400, 30))
                         screen.blit(difficulty_surface, difficulty_rect)
 
+                        removed = 40
+                        #sudoku_solution = sudoku_generator.generate_sudoku(9, removed)
+                        #print(sudoku_solution)  #this is a temporary check
+
                         game_option_buttons()
 
                         main_screen = False
@@ -122,6 +129,9 @@ def main():
                         difficulty_surface = difficulty_font.render("Difficulty: Hard", 0, (0, 0, 0))
                         difficulty_rect = difficulty_surface.get_rect(center=(400, 30))
                         screen.blit(difficulty_surface, difficulty_rect)
+
+                        removed = 50
+                        #sudoku_generator.generate_sudoku(9, removed)
 
                         game_option_buttons()
 
