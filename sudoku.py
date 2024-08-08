@@ -348,16 +348,39 @@ def main():
 
 
 
+            elif event.type == pygame.KEYDOWN and main_screen == False:
+                try:
+                    row, col
+                except NameError:
+                    row, col = 1, 1
+                board.select(row, col)
+                if event.key == pygame.K_LEFT:
+                    if col == 1:
+                        pass
+                    else:
+                        col -= 1
+                    board.select(row, col)
 
+                elif event.key == pygame.K_RIGHT:
+                    if col == 9:
+                        pass
+                    else:
+                        col += 1
+                    board.select(row, col)
 
+                elif event.key == pygame.K_UP:
+                    if row == 1:
+                        pass
+                    else:
+                        row -= 1
+                        board.select(row, col)
 
-
-
-
-
-
-
-
+                elif event.key == pygame.K_DOWN:
+                    if row == 9:
+                        pass
+                    else:
+                        row += 1
+                        board.select(row, col)
 
 
 
