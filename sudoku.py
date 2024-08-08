@@ -212,6 +212,7 @@ def main():
 
                         if cell_value == 0:
                             while True:
+                                enter = False
                                 for event in pygame.event.get():
                                     if event.type == pygame.KEYDOWN:
                                         if event.key == pygame.K_1:
@@ -244,10 +245,13 @@ def main():
                                         if event.key == pygame.K_RETURN:
                                             cell = sudoku_generator.Cell(cell_value, row, col, screen)
                                             cell.draw()
+                                            print("Enter")
+                                            enter = True
                                             break
-                                    else:
-                                        continue
-                            break
+                                if enter:
+                                    break
+
+
 
                         elif cell_value != 0:
                             cell = sudoku_generator.Cell(cell_value, row, col, screen)
