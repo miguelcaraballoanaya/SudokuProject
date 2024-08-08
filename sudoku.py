@@ -100,7 +100,7 @@ def main():
                         removed = 30
 
                         sudoku_board = sudoku_generator.generate_sudoku(9, removed)
-                        sudoku_solution = sudoku_generator.generate_sudoku_solution(9, removed)
+                        sudoku_solution = []
 
                         row_index = 1
                         cells_list = []
@@ -115,8 +115,8 @@ def main():
                                 col_index += 1
                             row_index += 1
 
-                        print(sudoku_board)  #this is a temporary check
-                        print(sudoku_solution)  #this is a temporary check
+                        # print(sudoku_board)  #this is a temporary check
+                        # print(sudoku_solution)  #this is a temporary check
 
                         game_option_buttons()
 
@@ -133,8 +133,9 @@ def main():
                         screen.blit(difficulty_surface, difficulty_rect)
 
                         removed = 40
+
                         sudoku_board = sudoku_generator.generate_sudoku(9, removed)
-                        sudoku_solution = sudoku_generator.generate_sudoku_solution(9, removed)
+                        sudoku_solution = []
 
                         row_index = 1
                         cells_list = []
@@ -149,8 +150,8 @@ def main():
                                 col_index += 1
                             row_index += 1
 
-                        print(sudoku_board)  #this is a temporary check
-                        print(sudoku_solution)  #this is a temporary check
+                        # print(sudoku_board)  #this is a temporary check
+                        # print(sudoku_solution)  #this is a temporary check
 
                         game_option_buttons()
 
@@ -169,7 +170,8 @@ def main():
                         removed = 50
 
                         sudoku_board = sudoku_generator.generate_sudoku(9, removed)
-                        sudoku_solution = sudoku_generator.generate_sudoku_solution(9, removed)
+                        sudoku_solution = []
+
 
                         row_index = 1
                         cells_list = []
@@ -184,8 +186,8 @@ def main():
                                 col_index += 1
                             row_index += 1
 
-                        print(sudoku_board)  # this is a temporary check
-                        print(sudoku_solution)  # this is a temporary check
+                        # print(sudoku_board)  # this is a temporary check
+                        # print(sudoku_solution)  # this is a temporary check
 
                         game_option_buttons()
 
@@ -203,7 +205,17 @@ def main():
 
                     if 135 <= x <= 265 and 730 <= y <= 795:
                         print("BUTTON 1 WORKS")  #this is a temporary check to make sure click detection works
-                        pass
+                        screen.fill(bg_color)
+                        board.draw()
+                        screen.blit(difficulty_surface, difficulty_rect)
+                        game_option_buttons()
+
+                        # for i in cells_initial:
+                        #     i.draw()
+
+                        print(sudoku_board)
+                        print(sudoku_solution)
+
 
                     elif 335 <= x <= 465 and 730 <= y <= 795:
                         screen.fill(bg_color)
