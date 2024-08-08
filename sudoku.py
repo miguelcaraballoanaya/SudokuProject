@@ -174,13 +174,20 @@ def main():
                         print("CLICK IS NOT NONE")  #this is a temporary check to make sure click detection works
                         col, row = click
                         board.select(row, col)
-                        if cell.value != 0:
+                        row_index = row - 1
+                        col_index = col - 1
+
+                        cell_value = sudoku_board[row_index][col_index]
+
+                        print(click)
+                        print(row_index, "", col_index)
+                        print(cell_value)
+
+                        if cell_value == 0:
                             pass
-                        elif cell.sketched_value is None:
-                            selected_cell = sudoku_generator.Cell(5, row, col, screen)  #5 is a placeholder value
-                            selected_cell.draw()
-                        else:
-                            pass
+
+
+
 
 
 
