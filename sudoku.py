@@ -129,6 +129,7 @@ def main():
                     break  #added this because the execution was getting stuck in this conditional
 
                 elif main_screen == False:
+                    click = board.click(x, y)
 
                     if 135 <= x <= 265 and 730 <= y <= 795:
                         print("BUTTON 1 WORKS")
@@ -141,7 +142,19 @@ def main():
                     elif 535 <= x <= 665 and 730 <= y <= 795:
                         pygame.quit()
                         sys.exit()
-                        pass
+
+                    elif click is None:
+                        print("CLICK IS NONE")
+
+                    elif click is not None:
+                        print("CLICK IS NOT NONE")
+                        row, col = click
+                        board.select(row, col)
+                        selected_cell = sudoku_generator.Cell(5, row, col, screen)
+                        selected_cell.draw()
+
+
+
 
 
 
