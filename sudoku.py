@@ -228,6 +228,7 @@ def main():
                         screen.fill(bg_color)
                         board.draw()
                         screen.blit(difficulty_surface, difficulty_rect)
+                        game_option_buttons()
 
                         for i in cells_list:
                             i.draw()
@@ -305,6 +306,14 @@ def main():
                                         x, y = event.pos
                                         new_click = board.click(x, y)
                                         if click != new_click:
+                                            screen.fill(bg_color)
+                                            board.draw()
+                                            screen.blit(difficulty_surface, difficulty_rect)
+                                            game_option_buttons()
+
+                                            for i in cells_list:
+                                                i.draw()
+
                                             enter = True
                                         else:
                                             continue
