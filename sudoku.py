@@ -55,17 +55,17 @@ def game_option_buttons():
     pygame.draw.rect(screen, (0, 0, 153), pygame.Rect(535, 730, 130, 65), 4)
     pygame.draw.rect(screen, (153, 204, 255), pygame.Rect(545, 740, 110, 45))
 
-    easy_surf = option_font.render("RESET", 0, (0, 0, 0))
-    easy_rect = easy_surf.get_rect(center=(200, 760))
-    screen.blit(easy_surf, easy_rect)
+    reset_surf = option_font.render("RESET", 0, (0, 0, 0))
+    reset_rect = reset_surf.get_rect(center=(200, 760))
+    screen.blit(reset_surf, reset_rect)
 
-    medium_surf = option_font.render("RESTART", 0, (0, 0, 0))
-    medium_rect = medium_surf.get_rect(center=(400, 760))
-    screen.blit(medium_surf, medium_rect)
+    restart_surf = option_font.render("RESTART", 0, (0, 0, 0))
+    restart_rect = restart_surf.get_rect(center=(400, 760))
+    screen.blit(restart_surf, restart_rect)
 
-    hard_surf = option_font.render("EXIT", 0, (0, 0, 0))
-    hard_rect = hard_surf.get_rect(center=(600, 760))
-    screen.blit(hard_surf, hard_rect)
+    exit_surf = option_font.render("EXIT", 0, (0, 0, 0))
+    exit_rect = exit_surf.get_rect(center=(600, 760))
+    screen.blit(exit_surf, exit_rect)
 
 
 def main():
