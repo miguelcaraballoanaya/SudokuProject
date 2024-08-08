@@ -346,9 +346,8 @@ def main():
                             print("B")
                             pass
 
-
-
             elif event.type == pygame.KEYDOWN and main_screen == False:
+
                 try:
                     row, col
                 except NameError:
