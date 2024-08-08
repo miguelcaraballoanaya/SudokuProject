@@ -1,3 +1,5 @@
+import copy
+
 import sudoku_generator
 import SudokuBoard
 import pygame
@@ -99,8 +101,9 @@ def main():
 
                         removed = 30
 
-                        sudoku_board = sudoku_generator.generate_sudoku(9, removed)
-                        sudoku_solution = []
+                        sudoku_board, sudoku_solution = sudoku_generator.generate_sudoku(9, removed)
+                        sudoku_board_initial = copy.deepcopy(sudoku_board)
+
 
                         row_index = 1
                         cells_list = []
@@ -114,9 +117,6 @@ def main():
                                 cells_list.append(cell)
                                 col_index += 1
                             row_index += 1
-
-                        # print(sudoku_board)  #this is a temporary check
-                        # print(sudoku_solution)  #this is a temporary check
 
                         game_option_buttons()
 
@@ -134,8 +134,8 @@ def main():
 
                         removed = 40
 
-                        sudoku_board = sudoku_generator.generate_sudoku(9, removed)
-                        sudoku_solution = []
+                        sudoku_board, sudoku_solution = sudoku_generator.generate_sudoku(9, removed)
+                        sudoku_board_initial = copy.deepcopy(sudoku_board)
 
                         row_index = 1
                         cells_list = []
@@ -169,8 +169,8 @@ def main():
 
                         removed = 50
 
-                        sudoku_board = sudoku_generator.generate_sudoku(9, removed)
-                        sudoku_solution = []
+                        sudoku_board, sudoku_solution = sudoku_generator.generate_sudoku(9, removed)
+                        sudoku_board_initial = copy.deepcopy(sudoku_board)
 
 
                         row_index = 1
@@ -210,10 +210,20 @@ def main():
                         screen.blit(difficulty_surface, difficulty_rect)
                         game_option_buttons()
 
-                        # for i in cells_initial:
-                        #     i.draw()
+                        row_index = 1
+                        cells_list = []
+                        for i in sudoku_board_initial:
+                            col_index = 1
+                            for j in i:
+                                cell = sudoku_generator.Cell(j, row_index, col_index, screen)
+                                cell.draw()
+                                if cell.value != 0:
+                                    cell.changeable = False
+                                cells_list.append(cell)
+                                col_index += 1
+                            row_index += 1
 
-                        print(sudoku_board)
+                        print(sudoku_board)  #these are checks
                         print(sudoku_solution)
 
 

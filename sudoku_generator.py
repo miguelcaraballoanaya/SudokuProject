@@ -1,3 +1,4 @@
+import copy
 import random
 import pygame
 
@@ -125,9 +126,11 @@ class SudokuGenerator:
 def generate_sudoku(size, removed):
     sudoku = SudokuGenerator(size, removed)
     sudoku.fill_values()
+    full_board = sudoku.get_board()
+    full_board = copy.deepcopy(full_board)
     sudoku.remove_cells()
     board = sudoku.get_board()
-    return board
+    return board, full_board
 
 
 
