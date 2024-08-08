@@ -73,9 +73,18 @@ def main():
     main_menu()
     main_screen = True
     game_end = False
+    win = False
 
     while True:
         for event in pygame.event.get():
+
+            if not any(0 in sublist for sublist in sudoku_board):
+                if sudoku_board == sudoku_solution:
+                    game_end = True
+                    win = True
+                else:
+                    game_end = True
+
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
