@@ -43,6 +43,30 @@ def main_menu():
     hard_rect = hard_surf.get_rect(center=(600, 500))
     screen.blit(hard_surf, hard_rect)
 
+def game_option_buttons():
+    option_font = pygame.font.Font(None, 35)
+
+    pygame.draw.rect(screen, (0, 0, 153), pygame.Rect(135, 730, 130, 65), 4)
+    pygame.draw.rect(screen, (153, 204, 255), pygame.Rect(145, 740, 110, 45))
+
+    pygame.draw.rect(screen, (0, 0, 153), pygame.Rect(335, 730, 130, 65), 4)
+    pygame.draw.rect(screen, (153, 204, 255), pygame.Rect(345, 740, 110, 45))
+
+    pygame.draw.rect(screen, (0, 0, 153), pygame.Rect(535, 730, 130, 65), 4)
+    pygame.draw.rect(screen, (153, 204, 255), pygame.Rect(545, 740, 110, 45))
+
+    easy_surf = option_font.render("RESET", 0, (0, 0, 0))
+    easy_rect = easy_surf.get_rect(center=(200, 760))
+    screen.blit(easy_surf, easy_rect)
+
+    medium_surf = option_font.render("RESTART", 0, (0, 0, 0))
+    medium_rect = medium_surf.get_rect(center=(400, 760))
+    screen.blit(medium_surf, medium_rect)
+
+    hard_surf = option_font.render("EXIT", 0, (0, 0, 0))
+    hard_rect = hard_surf.get_rect(center=(600, 760))
+    screen.blit(hard_surf, hard_rect)
+
 
 def main():
 
@@ -69,6 +93,8 @@ def main():
                     difficulty_rect = difficulty_surface.get_rect(center=(400, 30))
                     screen.blit(difficulty_surface, difficulty_rect)
 
+                    game_option_buttons()
+
                     main_screen = False
 
                 elif 295 <= x <= 425 and 450 <= y <= 515:
@@ -80,6 +106,8 @@ def main():
                     difficulty_surface = difficulty_font.render("Difficulty: Medium", 0, (0, 0, 0))
                     difficulty_rect = difficulty_surface.get_rect(center=(400, 30))
                     screen.blit(difficulty_surface, difficulty_rect)
+
+                    game_option_buttons()
 
                     main_screen = False
 
@@ -93,12 +121,22 @@ def main():
                     difficulty_rect = difficulty_surface.get_rect(center=(400, 30))
                     screen.blit(difficulty_surface, difficulty_rect)
 
+                    game_option_buttons()
+
                     main_screen = False
 
-            elif event.type == pygame.MOUSEBUTTONDOWN and game_end == True:
-                x, y = pygame.mouse.get_pos()
-                if 295 <= x <= 425 and 440 <= y <= 505:
-                    pass
+            elif pygame.event == pygame.MOUSEBUTTONDOWN:
+                pass
+                # x, y = pygame.mouse.get_pos()
+                # click_area = board.click(x, y)
+                # if click_area is not None:
+                #     row, col = click_area
+                #     board.select(row, col)
+                #     selected_cell = sudoku_generator.Cell(5, row, col, screen)
+                #     selected_cell.draw()
+
+
+
 
 
         pygame.display.update()
