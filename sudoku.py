@@ -101,11 +101,15 @@ def main():
                         sudoku_solution = sudoku_generator.generate_sudoku_solution(9, removed)
 
                         row_index = 1
+                        cells_list = []
                         for i in sudoku_board:
                             col_index = 1
                             for j in i:
                                 cell = sudoku_generator.Cell(j, row_index, col_index, screen)
                                 cell.draw()
+                                if cell.value != 0:
+                                    cell.changeable = False
+                                cells_list.append(cell)
                                 col_index += 1
                             row_index += 1
 
@@ -204,23 +208,27 @@ def main():
                         row_index = row - 1
                         col_index = col - 1
 
-                        cell_value = sudoku_board[row_index][col_index]
+                        cell = cells_list[(row-1)*9 + (col-1)]
 
                         print(click)
                         print(row_index, "", col_index)
-                        print(cell_value)
+                        print(cell.value)
 
-                        if cell_value == 0:
+                        if cell.value == 0:
                             while True:
                                 enter = False
                                 for event in pygame.event.get():
                                     if event.type == pygame.KEYDOWN:
                                         if event.key == pygame.K_1:
-                                            cell_value = 1
-                                            print(1)
+                                            cell.sketched_value = 1
+                                            cell.draw()
+                                            enter = True
+                                            break
                                         elif event.key == pygame.K_2:
-                                            cell_value = 2
-                                            print(2)
+                                            cell.sketched_value = 2
+                                            cell.draw()
+                                            enter = True
+                                            break
                                         elif event.key == pygame.K_3:
                                             cell_value = 3
                                             print(3)
@@ -242,13 +250,16 @@ def main():
                                         elif event.key == pygame.K_9:
                                             cell_value = 9
                                             print(9)
+                                        #cell_value = cell.sketched_value
                                         if event.key == pygame.K_RETURN:
-                                            cell = sudoku_generator.Cell(cell_value, row, col, screen)
-                                            cell.draw()
-                                            sudoku_board[row_index][col_index] = cell_value
+                                            cell.value = cell.sketched_value
+                                            if cell.value is not None:
+                                                cell.draw()
+                                            sudoku_board[row_index][col_index] = cell.value
                                             print("Enter")
                                             enter = True
                                             break
+
                                     if event.type == pygame.MOUSEBUTTONDOWN:
                                         x, y = event.pos
                                         new_click = board.click(x, y)
@@ -259,10 +270,11 @@ def main():
                                 if enter:
                                     break
 
-                        elif cell_value != 0:
-                            cell = sudoku_generator.Cell(cell_value, row, col, screen)
-
+                        elif cell.value != 0:
                             print("B")
+                            pass
+
+
 
 
 
