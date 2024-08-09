@@ -166,13 +166,13 @@ class Cell:
             text = font.render(str(self.value), True, (0, 0, 0))
             self.screen.blit(text, (x + self.width // 2 - text.get_width() // 2, y + self.height // 2 - text.get_height() // 2))
         elif self.sketched_value != 0 and self.changeable == False:
-            sketched_font = pygame.font.Font(None, 30)
+            sketched_font = pygame.font.Font(None, 40)
             sketched_text = sketched_font.render("", True, (128, 128, 128)) #grey color
-            self.screen.blit(sketched_text, (x + 5, y + 5))
+            self.screen.blit(sketched_text, (x+5, y+5))
         elif self.sketched_value != 0 and self.changeable == True:
-            sketched_font = pygame.font.Font(None, 30)
+            sketched_font = pygame.font.Font(None, 40)
             if self.sketched_value is None:
                 sketched_text = sketched_font.render("", True, (128, 128, 128))  # grey color
             else:
                 sketched_text = sketched_font.render(str(self.sketched_value), True, (128, 128, 128))  # grey color
-            self.screen.blit(sketched_text, (x + 5, y + 5))
+            self.screen.blit(sketched_text, (x+5, y+5))
