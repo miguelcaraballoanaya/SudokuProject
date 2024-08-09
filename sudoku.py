@@ -61,6 +61,13 @@ def game_over_menu():
     message_rect = message_surface.get_rect(center=(800 // 2, 800 // 5))
     screen.blit(message_surface, message_rect)
 
+    pygame.draw.rect(screen, (0, 0, 153), pygame.Rect(335, 400, 130, 65), 4)
+    pygame.draw.rect(screen, (153, 204, 255), pygame.Rect(345, 410, 110, 45))
+
+    restart_surf = button_font.render("RESTART", 0, (0, 0, 0))
+    restart_rect = restart_surf.get_rect(center=(400, 430))
+    screen.blit(restart_surf, restart_rect)
+
 def game_option_buttons():
     option_font = pygame.font.Font(None, 35)
 
@@ -102,6 +109,13 @@ def main():
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 x, y = event.pos
+
+                if game_end == True:
+                    screen.fill(bg_color)
+                    if win == True:
+                        pass
+                    elif win == False:
+                        game_over_menu()
 
                 if main_screen == True:
 
@@ -210,7 +224,7 @@ def main():
                         main_screen = False
                     break  #added this because the execution was getting stuck in this conditional
 
-                elif main_screen == False:
+                elif main_screen == False and game_end == False:
                     if not any(0 in sublist for sublist in sudoku_board):
                         if sudoku_board == sudoku_solution:
                             game_end = True
@@ -373,7 +387,7 @@ def main():
                             print("B")
                             pass
 
-            elif event.type == pygame.KEYDOWN and main_screen == False:
+            elif event.type == pygame.KEYDOWN and main_screen == False and game_end == False:
 
                 try:
                     row, col
