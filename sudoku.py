@@ -53,6 +53,13 @@ def game_win_menu():
     message_rect = message_surface.get_rect(center=(800 // 2, 800 // 5))
     screen.blit(message_surface, message_rect)
 
+    pygame.draw.rect(screen, (0, 0, 153), pygame.Rect(335, 400, 130, 65), 4)
+    pygame.draw.rect(screen, (153, 204, 255), pygame.Rect(345, 410, 110, 45))
+
+    exit_surf = button_font.render("RESTART", 0, (0, 0, 0))
+    exit_rect = exit_surf.get_rect(center=(400, 430))
+    screen.blit(exit_surf, exit_rect)
+
 def game_over_menu():
     message_font = pygame.font.Font(None, 85)
     button_font = pygame.font.Font(None, 35)
@@ -113,9 +120,15 @@ def main():
                 if game_end == True:
                     screen.fill(bg_color)
                     if win == True:
-                        pass
+                        game_win_menu()
+                        if 335 <= x <= 465 and 400 <= y <= 530:
+                            pygame.quit()
+                            sys.exit()
                     elif win == False:
                         game_over_menu()
+                        if 335 <= x <= 465 and 400 <= y <= 530:
+                            game_end = False
+                            main_screen = True
 
                 if main_screen == True:
 
