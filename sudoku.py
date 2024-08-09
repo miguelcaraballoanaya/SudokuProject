@@ -56,7 +56,7 @@ def game_win_menu():
     pygame.draw.rect(screen, (0, 0, 153), pygame.Rect(335, 400, 130, 65), 4)
     pygame.draw.rect(screen, (153, 204, 255), pygame.Rect(345, 410, 110, 45))
 
-    exit_surf = button_font.render("RESTART", 0, (0, 0, 0))
+    exit_surf = button_font.render("EXIT", 0, (0, 0, 0))
     exit_rect = exit_surf.get_rect(center=(400, 430))
     screen.blit(exit_surf, exit_rect)
 
