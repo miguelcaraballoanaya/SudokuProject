@@ -200,7 +200,7 @@ def main():
                             game_end = True
                             win = True
                         else:
-                            game_end = True
+                            game_end = True # I think this should be game_end = False, unless I misunderstood the logic
                     click = board.click(x, y)
 
                     if 135 <= x <= 265 and 730 <= y <= 795:
