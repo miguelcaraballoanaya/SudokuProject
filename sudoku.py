@@ -45,6 +45,29 @@ def main_menu():
     hard_rect = hard_surf.get_rect(center=(600, 500))
     screen.blit(hard_surf, hard_rect)
 
+def game_win_menu():
+    message_font = pygame.font.Font(None, 85)
+    button_font = pygame.font.Font(None, 35)
+
+    message_surface = message_font.render("Game Won!", 0, (0, 0, 0))
+    message_rect = message_surface.get_rect(center=(800 // 2, 800 // 5))
+    screen.blit(message_surface, message_rect)
+
+def game_over_menu():
+    message_font = pygame.font.Font(None, 85)
+    button_font = pygame.font.Font(None, 35)
+
+    message_surface = message_font.render("Game Over!", 0, (0, 0, 0))
+    message_rect = message_surface.get_rect(center=(800 // 2, 800 // 5))
+    screen.blit(message_surface, message_rect)
+
+    pygame.draw.rect(screen, (0, 0, 153), pygame.Rect(335, 400, 130, 65), 4)
+    pygame.draw.rect(screen, (153, 204, 255), pygame.Rect(345, 410, 110, 45))
+
+    restart_surf = button_font.render("RESTART", 0, (0, 0, 0))
+    restart_rect = restart_surf.get_rect(center=(400, 430))
+    screen.blit(restart_surf, restart_rect)
+
 def game_option_buttons():
     option_font = pygame.font.Font(None, 35)
 
@@ -86,6 +109,13 @@ def main():
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 x, y = event.pos
+
+                if game_end == True:
+                    screen.fill(bg_color)
+                    if win == True:
+                        pass
+                    elif win == False:
+                        game_over_menu()
 
                 if main_screen == True:
 
@@ -194,13 +224,14 @@ def main():
                         main_screen = False
                     break  #added this because the execution was getting stuck in this conditional
 
-                elif main_screen == False:
+                elif main_screen == False and game_end == False:
                     if not any(0 in sublist for sublist in sudoku_board):
                         if sudoku_board == sudoku_solution:
                             game_end = True
                             win = True
                         else:
                             game_end = True # I think this should be game_end = False, unless I misunderstood the logic
+
                     click = board.click(x, y)
 
                     if 135 <= x <= 265 and 730 <= y <= 795:
@@ -264,7 +295,7 @@ def main():
                         print(row_index, "", col_index)
                         print(cell.value)
 
-                        if cell.value == 0:
+                        if cell.value == 0 or cell.value == None:
                             while True:
                                 enter = False
                                 for event in pygame.event.get():
@@ -324,8 +355,8 @@ def main():
                                             break
                                         if event.key == pygame.K_RETURN:
                                             cell.value = cell.sketched_value
-                                            cell.sketched_value = None
                                             if cell.value is not None:
+                                                cell.sketched_value = None
                                                 cell.draw()
                                                 pygame.display.update()
                                             sudoku_board[row_index][col_index] = cell.value
@@ -356,7 +387,7 @@ def main():
                             print("B")
                             pass
 
-            elif event.type == pygame.KEYDOWN and main_screen == False:
+            elif event.type == pygame.KEYDOWN and main_screen == False and game_end == False:
 
                 try:
                     row, col
@@ -413,73 +444,76 @@ def main():
                     while True:
                         enter = False
                         for event in pygame.event.get():
-                            if event.key == pygame.K_1:
-                                cell.sketched_value = 1
-                                cell.draw()
-                                pygame.display.update()
-                                enter = True
-                                break
-                            elif event.key == pygame.K_2:
-                                cell.sketched_value = 2
-                                cell.draw()
-                                enter = True
-                                break
-                            elif event.key == pygame.K_3:
-                                cell.sketched_value = 3
-                                cell.draw()
-                                pygame.display.update()
-                                enter = True
-                                break
-                            elif event.key == pygame.K_4:
-                                cell.sketched_value = 4
-                                cell.draw()
-                                pygame.display.update()
-                                enter = True
-                                break
-                            elif event.key == pygame.K_5:
-                                cell.sketched_value = 5
-                                cell.draw()
-                                pygame.display.update()
-                                enter = True
-                                break
-                            elif event.key == pygame.K_6:
-                                cell.sketched_value = 6
-                                cell.draw()
-                                pygame.display.update()
-                                enter = True
-                                break
-                            elif event.key == pygame.K_7:
-                                cell.sketched_value = 7
-                                cell.draw()
-                                pygame.display.update()
-                                enter = True
-                                break
-                            elif event.key == pygame.K_8:
-                                cell.sketched_value = 8
-                                cell.draw()
-                                pygame.display.update()
-                                enter = True
-                                break
-                            elif event.key == pygame.K_9:
-                                cell.sketched_value = 9
-                                cell.draw()
-                                pygame.display.update()
-                                enter = True
-                                break
-                            if event.key == pygame.K_RETURN:
-                                cell.value = cell.sketched_value
-                                cell.sketched_value = None
-                                if cell.value is not None:
+                            if event.type == pygame.KEYDOWN:
+                                if event.key == pygame.K_1:
+                                    cell.sketched_value = 1
                                     cell.draw()
                                     pygame.display.update()
-                                sudoku_board[row_index][col_index] = cell.value
-                                print("Enter")
-                                print(sudoku_board)
-                                enter = True
-                                break
-                            else:
-                                enter = True
-                                break
+                                    enter = True
+                                    break
+                                elif event.key == pygame.K_2:
+                                    cell.sketched_value = 2
+                                    cell.draw()
+                                    enter = True
+                                    break
+                                elif event.key == pygame.K_3:
+                                    cell.sketched_value = 3
+                                    cell.draw()
+                                    pygame.display.update()
+                                    enter = True
+                                    break
+                                elif event.key == pygame.K_4:
+                                    cell.sketched_value = 4
+                                    cell.draw()
+                                    pygame.display.update()
+                                    enter = True
+                                    break
+                                elif event.key == pygame.K_5:
+                                    cell.sketched_value = 5
+                                    cell.draw()
+                                    pygame.display.update()
+                                    enter = True
+                                    break
+                                elif event.key == pygame.K_6:
+                                    cell.sketched_value = 6
+                                    cell.draw()
+                                    pygame.display.update()
+                                    enter = True
+                                    break
+                                elif event.key == pygame.K_7:
+                                    cell.sketched_value = 7
+                                    cell.draw()
+                                    pygame.display.update()
+                                    enter = True
+                                    break
+                                elif event.key == pygame.K_8:
+                                    cell.sketched_value = 8
+                                    cell.draw()
+                                    pygame.display.update()
+                                    enter = True
+                                    break
+                                elif event.key == pygame.K_9:
+                                    cell.sketched_value = 9
+                                    cell.draw()
+                                    pygame.display.update()
+                                    enter = True
+                                    break
+                                if event.key == pygame.K_RETURN:
+                                    cell.value = cell.sketched_value
+                                    if cell.value is not None:
+                                        cell.sketched_value = None
+                                        cell.draw()
+                                        pygame.display.update()
+                                    sudoku_board[row_index][col_index] = cell.value
+                                    print("Enter")
+                                    print(sudoku_board)
+                                    pygame.display.update()
+                                    enter = True
+                                    break
+
+                                else:
+                                    enter = True
+                                    break
                         if enter:
                             pygame.draw.rect(screen, (255, 0, 0),
                                              ((72 + (72 * (col - 1))), (72 + (72 * (row - 1))), 72, 72), 2)
@@ -488,6 +522,7 @@ def main():
 
                 elif cell.value != 0:
                     print("B")
+                    print(cell.value)
                     pass
 
 
@@ -504,8 +539,6 @@ def main():
                 pygame.display.update()
 
                 cell = cells_list[(row - 1) * 9 + (col - 1)]
-
-
 
         pygame.display.update()
 
