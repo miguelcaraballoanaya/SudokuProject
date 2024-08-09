@@ -45,6 +45,22 @@ def main_menu():
     hard_rect = hard_surf.get_rect(center=(600, 500))
     screen.blit(hard_surf, hard_rect)
 
+def game_win_menu():
+    message_font = pygame.font.Font(None, 85)
+    button_font = pygame.font.Font(None, 35)
+
+    message_surface = message_font.render("Game Won!", 0, (0, 0, 0))
+    message_rect = message_surface.get_rect(center=(800 // 2, 800 // 5))
+    screen.blit(message_surface, message_rect)
+
+def game_over_menu():
+    message_font = pygame.font.Font(None, 85)
+    button_font = pygame.font.Font(None, 35)
+
+    message_surface = message_font.render("Game Over!", 0, (0, 0, 0))
+    message_rect = message_surface.get_rect(center=(800 // 2, 800 // 5))
+    screen.blit(message_surface, message_rect)
+
 def game_option_buttons():
     option_font = pygame.font.Font(None, 35)
 
@@ -201,6 +217,7 @@ def main():
                             win = True
                         else:
                             game_end = True # I think this should be game_end = False, unless I misunderstood the logic
+
                     click = board.click(x, y)
 
                     if 135 <= x <= 265 and 730 <= y <= 795:
@@ -324,8 +341,8 @@ def main():
                                             break
                                         if event.key == pygame.K_RETURN:
                                             cell.value = cell.sketched_value
-                                            cell.sketched_value = None
                                             if cell.value is not None:
+                                                cell.sketched_value = None
                                                 cell.draw()
                                                 pygame.display.update()
                                             sudoku_board[row_index][col_index] = cell.value
@@ -468,8 +485,8 @@ def main():
                                 break
                             if event.key == pygame.K_RETURN:
                                 cell.value = cell.sketched_value
-                                cell.sketched_value = None
                                 if cell.value is not None:
+                                    cell.sketched_value = None
                                     cell.draw()
                                     pygame.display.update()
                                 sudoku_board[row_index][col_index] = cell.value
@@ -504,8 +521,6 @@ def main():
                 pygame.display.update()
 
                 cell = cells_list[(row - 1) * 9 + (col - 1)]
-
-
 
         pygame.display.update()
 
