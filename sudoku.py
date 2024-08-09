@@ -252,12 +252,13 @@ def main():
                     break
 
                 elif not main_screen and not game_end:
+
                     if not any(0 in sublist for sublist in sudoku_board):
                         if sudoku_board == sudoku_solution:
                             game_end = True
                             win = True
                         else:
-                            game_end = True # I think this should be game_end = False, unless I misunderstood the logic
+                            game_end = True
 
                     click = board.click(x, y)
 
