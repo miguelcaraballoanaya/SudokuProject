@@ -110,6 +110,37 @@ def main():
     while True:
         for event in pygame.event.get():
 
+            if game_end == True:
+                game_end = False
+                screen.fill(bg_color)
+                if win == True:
+                    game_win_menu()
+                    if 335 <= x <= 465 and 400 <= y <= 530:
+                        pygame.quit()
+                        sys.exit()
+                elif win == False:
+                    game_over_menu()
+                    if 335 <= x <= 465 and 400 <= y <= 530:
+                        screen.fill(bg_color)
+                        board.draw()
+                        screen.blit(difficulty_surface, difficulty_rect)
+                        game_option_buttons()
+
+                        row_index = 1
+                        cells_list = []
+                        for i in sudoku_board_initial:
+                            col_index = 1
+                            for j in i:
+                                cell = sudoku_generator.Cell(j, row_index, col_index, screen)
+                                cell.draw()
+                                if cell.value != 0:
+                                    cell.changeable = False
+                                cells_list.append(cell)
+                                col_index += 1
+                            row_index += 1
+
+                        sudoku_board = copy.deepcopy(sudoku_board_initial)
+
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
@@ -117,20 +148,7 @@ def main():
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 x, y = event.pos
 
-                if game_end == True:
-                    screen.fill(bg_color)
-                    if win == True:
-                        game_win_menu()
-                        if 335 <= x <= 465 and 400 <= y <= 530:
-                            pygame.quit()
-                            sys.exit()
-                    elif win == False:
-                        game_over_menu()
-                        if 335 <= x <= 465 and 400 <= y <= 530:
-                            game_end = False
-                            main_screen = True
-
-                if main_screen == True:
+                if main_screen:
 
                     if 135 <= x <= 265 and 470 <= y <= 535:
                         board = SudokuBoard.Board(720, 720, screen, "EASY")
@@ -215,7 +233,6 @@ def main():
                         sudoku_board, sudoku_solution = sudoku_generator.generate_sudoku(9, removed)
                         sudoku_board_initial = copy.deepcopy(sudoku_board)
 
-
                         row_index = 1
                         cells_list = []
                         for i in sudoku_board:
@@ -229,15 +246,12 @@ def main():
                                 col_index += 1
                             row_index += 1
 
-                        # print(sudoku_board)  # this is a temporary check
-                        # print(sudoku_solution)  # this is a temporary check
-
                         game_option_buttons()
 
                         main_screen = False
-                    break  #added this because the execution was getting stuck in this conditional
+                    break
 
-                elif main_screen == False and game_end == False:
+                elif not main_screen and not game_end:
                     if not any(0 in sublist for sublist in sudoku_board):
                         if sudoku_board == sudoku_solution:
                             game_end = True
@@ -400,7 +414,7 @@ def main():
                             print("B")
                             pass
 
-            elif event.type == pygame.KEYDOWN and main_screen == False and game_end == False:
+            elif event.type == pygame.KEYDOWN and not main_screen and not game_end:
 
                 try:
                     row, col
@@ -533,7 +547,6 @@ def main():
                 elif cell.value != 0:
                     print("B")
                     pass
-
 
                 board.select(row, col)
                 screen.fill(bg_color)
