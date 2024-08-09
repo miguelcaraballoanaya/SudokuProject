@@ -211,9 +211,6 @@ def main():
                                 col_index += 1
                             row_index += 1
 
-                        # print(sudoku_board)  #this is a temporary check
-                        # print(sudoku_solution)  #this is a temporary check
-
                         game_option_buttons()
 
                         main_screen = False
@@ -260,10 +257,11 @@ def main():
                         else:
                             game_end = True
 
+                        break
+
                     click = board.click(x, y)
 
                     if 135 <= x <= 265 and 730 <= y <= 795:
-                        print("BUTTON 1 WORKS")  #this is a temporary check to make sure click detection works
                         screen.fill(bg_color)
                         board.draw()
                         screen.blit(difficulty_surface, difficulty_rect)
@@ -282,10 +280,6 @@ def main():
                                 col_index += 1
                             row_index += 1
 
-                        print(sudoku_board)  #these are checks
-                        print(sudoku_solution)
-
-
                     elif 335 <= x <= 465 and 730 <= y <= 795:
                         screen.fill(bg_color)
                         main()
@@ -295,11 +289,10 @@ def main():
                         pygame.quit()
                         sys.exit()
 
-                    elif click is None:  #this is true if the user clicks outside the board space
-                        print("CLICK IS NONE")  #this is a temporary check to make sure click detection works
+                    elif click is None:
+                        pass
 
-                    elif click is not None:  #this is true if the user clicks a cell
-                        print("CLICK IS NOT NONE")  #this is a temporary check to make sure click detection works
+                    elif click is not None:
                         x, y = event.pos
                         col, row = click
                         board.select(row, col)
@@ -318,10 +311,6 @@ def main():
                         pygame.display.update()
 
                         cell = cells_list[(row-1)*9 + (col-1)]
-
-                        print(click)
-                        print(row_index, "", col_index)
-                        print(cell.value)
 
                         if cell.value == 0 or cell.value == None:
                             while True:
@@ -388,8 +377,6 @@ def main():
                                                 cell.draw()
                                                 pygame.display.update()
                                             sudoku_board[row_index][col_index] = cell.value
-                                            print("Enter")
-                                            print(sudoku_board)
                                             enter = True
                                             break
 
@@ -412,7 +399,6 @@ def main():
                                     break
 
                         elif cell.value != 0:
-                            print("B")
                             pass
 
             elif event.type == pygame.KEYDOWN and not main_screen and not game_end:
@@ -532,8 +518,6 @@ def main():
                                     cell.draw()
                                     pygame.display.update()
                                 sudoku_board[row_index][col_index] = cell.value
-                                print("Enter")
-                                print(sudoku_board)
                                 enter = True
                                 break
                             else:
@@ -546,7 +530,6 @@ def main():
                             break
 
                 elif cell.value != 0:
-                    print("B")
                     pass
 
                 board.select(row, col)
