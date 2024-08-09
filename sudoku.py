@@ -99,7 +99,6 @@ def game_option_buttons():
     exit_rect = exit_surf.get_rect(center=(600, 760))
     screen.blit(exit_surf, exit_rect)
 
-
 def main():
 
     main_menu()
